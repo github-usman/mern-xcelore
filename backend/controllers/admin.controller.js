@@ -1,3 +1,5 @@
+import ApiFeatures from "../api-feature.js";
+import { resultPerPage } from "../config/env.config.js";
 import catchAysncErrors from "../middlewares/catchAysncErrors.js";
 import { User } from "../models/user.model.js";
 import ErrorHander from "../utils/error-handler.js"
@@ -12,13 +14,19 @@ export const registerAdmin = catchAysncErrors(async (req, res, next) => {
 
 // Get all User Profile -- ADMIN
 export const getAllUserProfile = catchAysncErrors(async (req, res, next) => {
-  const user = await User.find();
+  const userCount = await User.countDocuments();
+  const apiFeatures = new ApiFeatures(User.find(), req.query)
+  .search()
+  .pagination(resultPerPage);
+  const allUsers = await apiFeatures.query;
 
   res.status(200).json({
     success: true,
-    user,
+    allUsers,
+    userCount
   });
 });
+
 
 // Get single User Profile
 export const getSinglUserProfile = catchAysncErrors(async (req, res, next) => {
