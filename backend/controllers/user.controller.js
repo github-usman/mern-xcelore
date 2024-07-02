@@ -1,4 +1,5 @@
 import { User } from "../models/user.model.js";
+import sendToken from "../utils/jwt-tokens.js";
 
 // user Register
 export const registerUser = async (req, res) => {
@@ -22,11 +23,51 @@ export const registerUser = async (req, res) => {
   }
 };
 
+// user Login
+export const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    // checking credentials verfication
+
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: `Please Enter Email & Password`,
+      });
+    }
+
+    const user = await User.findOne({ email }).select("+password");
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: `Invalid email or password`,
+      });
+    }
+    const isPasswordMatched = await user.comparePassword(password);
+
+    if (!isPasswordMatched) {
+      return res.status(401).json({
+        success: false,
+        message: `Invalid email or password`,
+      });
+    }
+
+    sendToken(user, 200, res);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: `problem due to ${error}`,
+    });
+  }
+};
+
 // Get user profile
 export const profileUser = async (req, res) => {
   try {
     console.log(req.params.id);
-    
+
     const user = await User.findOne({ _id: req.params.id });
 
     res.status(200).json({
@@ -52,7 +93,7 @@ export const updateUserProfile = async (req, res) => {
     };
 
     if (!isUserId) {
-     return res.status(400).json({
+      return res.status(400).json({
         success: true,
         message: `User doest not exist with this id : ${req.params.id}`,
       });
@@ -75,14 +116,12 @@ export const updateUserProfile = async (req, res) => {
   }
 };
 
-
-
 // Delete a User
 export const deleteUser = async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (!user) {
-  return  res.status(400).json({
+    return res.status(400).json({
       success: true,
       message: `User doest not exist with this id : ${req.params.id}`,
     });
@@ -94,5 +133,4 @@ export const deleteUser = async (req, res) => {
     success: true,
     message: "User Delete Successfully!",
   });
-}
-
+};

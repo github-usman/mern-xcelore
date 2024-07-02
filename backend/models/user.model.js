@@ -3,6 +3,7 @@ import validator from "validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import { jwtExpire, jwtSecret } from "../config/env.config.js";
 
 const userSchema = new mongoose.Schema({
   first_name: {
@@ -59,6 +60,12 @@ userSchema.methods.getJWTToken = function () {
     expiresIn: jwtExpire,
   });
 };
+
+// Compare password
+userSchema.methods.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
 
 
 export const User = mongoose.model("User", userSchema);
