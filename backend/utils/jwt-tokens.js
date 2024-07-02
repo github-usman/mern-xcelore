@@ -1,10 +1,10 @@
 import { cookieExpire } from "../config/env.config.js";
 const sendToken = (user, statusCode, res) => {
   const token = user.getJWTToken();
-
+  const maxAge = cookieExpire * 24 * 60 * 60 * 1000;
   // options for cookie
   const options = {
-    expire: new Date(Date.now() + cookieExpire + 24 * 60 * 60 * 1000),
+    maxAge: maxAge,
     httpOnly: true,
   };
   res.status(statusCode).cookie("token", token, options).json({

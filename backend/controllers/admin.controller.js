@@ -18,7 +18,7 @@ export const registerAdmin = async (req, res) => {
 
 
 // Get all User Profile -- ADMIN
-export const getAllUserProfile = async (req, res) => {
+export const getAllUserProfile = async (req, res,next) => {
   try {
     const user = await User.find();
 
