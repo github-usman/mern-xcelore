@@ -9,12 +9,16 @@ import {
 import { authorizeRole, isAuthenticatedUser } from "../middlewares/auth.js";
 const router = express();
 
-
-// For new admin registeration
+// For first time deploy database -> new admin registeration
 router.post("/first-time-admin-hidden/register", registerAdmin);
 
 // admin
-router.post("/register",isAuthenticatedUser,authorizeRole('admin'), registerAdmin); //Create
+router.post(
+  "/register",
+  isAuthenticatedUser,
+  authorizeRole("admin"),
+  registerAdmin
+); //Create
 
 // View all users in DB
 router.get(
@@ -27,8 +31,8 @@ router.get(
 // Particular Single Users Operation
 router
   .route("/user/:id")
-  .get(isAuthenticatedUser,authorizeRole('admin'),getSinglUserProfile)  // Read
-  .put(isAuthenticatedUser,authorizeRole('admin'),updateUserProfile)  // Update
-  .delete(isAuthenticatedUser,authorizeRole('admin'),deleteUser);   // delete
+  .get(isAuthenticatedUser, authorizeRole("admin"), getSinglUserProfile) // Read
+  .put(isAuthenticatedUser, authorizeRole("admin"), updateUserProfile) // Update
+  .delete(isAuthenticatedUser, authorizeRole("admin"), deleteUser); // delete
 
 export default router;
