@@ -17,3 +17,4 @@ stored in the database.
 ensure only admins can access the admin panel.
 - Form Validation: Implement  ```[backend]``` form validation for registration
 and login forms.
+- Error Handling: Implement proper error handling ```[backend]```

@@ -1,9 +1,11 @@
+import catchAysncErrors from "../middlewares/catchAysncErrors.js";
 import { User } from "../models/user.model.js";
 import sendToken from "../utils/jwt-tokens.js";
+import ErrorHander from "../utils/error-handler.js"
 
 // user Register
-export const registerUser = async (req, res) => {
-  try {
+export const registerUser = catchAysncErrors(async (req, res) => {
+
     const { first_name, last_name, email, password } = req.body;
     const user = await User.create({
       first_name,
@@ -15,69 +17,48 @@ export const registerUser = async (req, res) => {
       success: true,
       user,
     });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: `problem due to ${error}`,
-    });
-  }
-};
 
-// user Login
-export const loginUser = async (req, res, next) => {
-  try {
+});
+
+// User Login
+export const loginUser = catchAysncErrors(async (req, res, next) => {
+
     const { email, password } = req.body;
 
     // checking credentials verfication
 
     if (!email || !password) {
-      return res.status(400).json({
-        success: false,
-        message: `Please Enter Email & Password`,
-      });
+      return next(new ErrorHander("Please Enter Email & Password", 400));
     }
 
     const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
-      return res.status(401).json({
-        success: false,
-        message: `Invalid email or password`,
-      });
+      return next(new ErrorHander("Invalid email or password", 401));
     }
     const isPasswordMatched = await user.comparePassword(password);
 
     if (!isPasswordMatched) {
-      return res.status(401).json({
-        success: false,
-        message: `Invalid email or password`,
-      });
+      return next(new ErrorHander("Invalid email or password", 401));
     }
 
     sendToken(user, 200, res);
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: `problem due to ${error}`,
-    });
-  }
-};
+});
 
-export const logoutUser = async (req, res, next) => {
+export const logoutUser = catchAysncErrors(async (req, res, next) => {
   res.clearCookie("token", {
     httpOnly: true,
   });
 
   res.status(200).json({
     success: true,
-    message: "Logged Out",
+    message: "Logged Out Successfully",
   });
-};
+});
 
 
 // Get user profile
-export const profileUser = async (req, res) => {
-  try {
+export const profileUser = catchAysncErrors(async (req, res) => {
 
     const user = await User.findById(req.user.id);
 
@@ -85,17 +66,11 @@ export const profileUser = async (req, res) => {
       success: true,
       user,
     });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: `problem due to ${error}`,
-    });
-  }
-};
+});
 
 // Update User Profile
-export const updateUserProfile = async (req, res) => {
-  try {
+export const updateUserProfile = catchAysncErrors(async (req, res) => {
+
     const newUserData = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -111,11 +86,6 @@ export const updateUserProfile = async (req, res) => {
       success: true,
       user,
     });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: `problem due to ${error}`,
-    });
-  }
-};
+ 
+});
 
