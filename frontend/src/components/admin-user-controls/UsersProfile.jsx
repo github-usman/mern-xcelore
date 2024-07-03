@@ -4,7 +4,7 @@ import { FaCalendarAlt, FaEnvelope, FaUser, FaUserTag } from "react-icons/fa";
 const UsersProfile = ({user}) => {
   return (
     <>
-      <div key={user._id} className="mb-3">
+      <div key={user._id} className="mb-3 p-2 shadow" style={{backgroundColor:'#fff3d9',borderRadius:'5px',border:'none'}}>
         <div className="row mb-3">
           <div className="col-md-3 text-center">
             <FaUser size={30} className="text-primary" />
@@ -51,7 +51,6 @@ const UsersProfile = ({user}) => {
             </p>
           </div>
         </div>
-        <hr />
       </div>
     </>
   );

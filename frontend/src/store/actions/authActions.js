@@ -35,10 +35,10 @@ export const fetchUserProfile = () => async (dispatch) => {
   }
 };
 
-export const fetchAllUserProfile = () => async (dispatch) => {
+export const fetchAllUserProfile = (keyword = '', page = 1) => async (dispatch) => {
   dispatch({ type: SET_LOADING, payload: true });
   try {
-    const data = await fetchAllProfileService();
+    const data = await fetchAllProfileService(keyword, page);
     dispatch({ type: FETCH_ALL_PROFILE_SUCCESS, payload: data.allUsers }); // Use data.allUsers
     dispatch({ type: FETCH_ALL_PROFILE_SUCCESS_COUNT, payload: data.userCount }); 
   } catch (error) {
@@ -47,4 +47,3 @@ export const fetchAllUserProfile = () => async (dispatch) => {
     dispatch({ type: SET_LOADING, payload: false });
   }
 };
-

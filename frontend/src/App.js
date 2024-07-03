@@ -15,6 +15,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
+        <Route
+            path="/update"
+            element={
+              <ProtectedRoute>
+                <UserProfileUpdate />
+              </ProtectedRoute>
+            }
+          />
         <Route path="/user">
           <Route path="register" element={<UserRegister />} />
           <Route path="login" element={<UserLoginPage />} />
@@ -27,14 +35,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="update"
-            element={
-              <ProtectedRoute>
-                <UserProfileUpdate />
-              </ProtectedRoute>
-            }
-          />
+          
         </Route>
         <Route path="/admin">
         <Route path="login" element={<AdminLoginPage />} />
