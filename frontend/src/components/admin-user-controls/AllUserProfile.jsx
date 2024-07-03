@@ -20,6 +20,19 @@ const AllUserProfile = () => {
     dispatch(fetchAllUserProfile(searchTerm, currentPage));
   };
 
+  const handleClickNext = () => {
+    const totalPages = Math.ceil(userCount / 4);
+    if(currentPage<totalPages)
+    setCurrentPage((prevPage) => prevPage + 1);
+    dispatch(fetchAllUserProfile(searchTerm, currentPage));
+  };
+
+  const handleClickPrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+      dispatch(fetchAllUserProfile(searchTerm, currentPage));
+    }
+  };
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -59,9 +72,9 @@ const AllUserProfile = () => {
           )}
         </div>
         <div className="d-flex align-item-center mb-3">
-          <button className="btn btn-dark">Next Page</button>
-          <h6 className="mt-2">&nbsp; &nbsp; &nbsp; {(userCount/4)} &nbsp; &nbsp; &nbsp; &nbsp;</h6>
-          <button className="btn btn-dark">Next Page</button>
+          <button className='btn btn-dark' onClick={handleClickPrev} disabled={currentPage === 1}>Prev Page</button>
+          <h6 className="mt-2">&nbsp; &nbsp; &nbsp; {currentPage} / {Math.ceil(userCount / 4)} &nbsp; &nbsp; &nbsp; &nbsp;</h6>
+          <button className="btn btn-dark" onClick={handleClickNext} disabled={currentPage === Math.ceil(userCount/4)}>Next Page</button>
         </div>
       </div>
       
