@@ -1,7 +1,24 @@
 import React from "react";
-import { FaCalendarAlt, FaEnvelope, FaUser, FaUserTag } from "react-icons/fa";
+import toast from 'react-hot-toast';
+import { FaCalendarAlt, FaEdit, FaEnvelope, FaTrash, FaUser, FaUserTag } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+
+import { deleteUserById, fetchAllUserProfile } from "../../store/actions/authActions";
 
 const UsersProfile = ({user}) => {
+
+  const dispatch = useDispatch()
+  
+  const handleDelete = () => {
+    try {
+      dispatch(deleteUserById(user._id));
+      toast.success(`User ${user.first_name} Deleted Successfully`);
+      dispatch(fetchAllUserProfile('', 1));
+    } catch (error) {
+      console.error('Error deleting user:', error.message);
+    }
+  };
+
   return (
     <>
       <div key={user._id} className="mb-3 p-2 shadow" style={{backgroundColor:'#fff3d9',borderRadius:'5px',border:'none'}}>
@@ -50,6 +67,11 @@ const UsersProfile = ({user}) => {
               </span>
             </p>
           </div>
+        </div>
+        <hr />
+        <div className="d-flex gap-5 justify-content-center">
+        <button className="btn btn-danger d-flex align-items-center gap-3" onClick={handleDelete}><FaTrash /> Delete User</button>
+        <button className="btn btn-warning d-flex align-items-center gap-3"><FaEdit /> Update User</button>
         </div>
       </div>
     </>

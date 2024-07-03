@@ -1,9 +1,21 @@
-import { FETCH_ALL_PROFILE_FAILURE, FETCH_ALL_PROFILE_SUCCESS, FETCH_ALL_PROFILE_SUCCESS_COUNT, FETCH_PROFILE_FAILURE, FETCH_PROFILE_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, SET_LOADING } from '../actionTypes';
+import {
+  FETCH_ALL_PROFILE_FAILURE,
+  FETCH_ALL_PROFILE_SUCCESS,
+  FETCH_ALL_PROFILE_SUCCESS_COUNT,
+  FETCH_PROFILE_FAILURE,
+  FETCH_PROFILE_SUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  SET_LOADING,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAILURE,
+} from '../actionTypes';
+
 const initialState = {
   user: null,
-  users: [], // Add this to handle multiple users
+  users: [], // To store multiple users
   loading: false,
-  userCount:0,
+  userCount: 0,
   error: null,
 };
 
@@ -23,6 +35,7 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_FAILURE:
     case FETCH_PROFILE_FAILURE:
     case FETCH_ALL_PROFILE_FAILURE:
+    case DELETE_USER_FAILURE:
       return {
         ...state,
         error: action.payload,
@@ -36,13 +49,21 @@ const authReducer = (state = initialState, action) => {
     case FETCH_ALL_PROFILE_SUCCESS:
       return {
         ...state,
-        users: action.payload, 
+        users: action.payload,
         error: null,
       };
     case FETCH_ALL_PROFILE_SUCCESS_COUNT:
       return {
         ...state,
-        userCount: action.payload, 
+        userCount: action.payload,
+        error: null,
+      };
+    case DELETE_USER_SUCCESS:
+      // Filter out the deleted user from state.users based on action.payload.deletedUserId
+      const updatedUsers = state.users.filter(user => user.id !== action.payload.deletedUserId);
+      return {
+        ...state,
+        users: updatedUsers,
         error: null,
       };
     default:

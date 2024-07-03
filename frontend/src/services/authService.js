@@ -72,5 +72,59 @@ const fetchAllProfileService = async (keyword = '', page = 1) => {
   }
 };
 
+const deleteUserParamIdService = async (id) => {
+  try {
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    };
 
-export { loginService, fetchProfileService,fetchAllProfileService };
+    const token = getCookie('token');
+    if (!token) {
+      throw new Error('No token found. Please log in.');
+    }
+
+    const response = await axiosInstance.delete(`/admin/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log(response.data , 'delete');
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+
+
+const updateUserParamIdService = async (id) => {
+  try {
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+
+    const token = getCookie('token');
+    if (!token) {
+      throw new Error('No token found. Please log in.');
+    }
+
+    const response = await axiosInstance.put(`/admin/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log(response.data , 'delete');
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+
+export { loginService, deleteUserParamIdService,fetchProfileService,fetchAllProfileService,updateUserParamIdService };
