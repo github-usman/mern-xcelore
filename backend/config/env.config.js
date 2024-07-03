@@ -5,6 +5,7 @@ dotenv.config({ path: ".env" });
 const server = {
   serverPort: process.env.SERVER_PORT,
   serverMode: process.env.SERVER_MODE,
+  serverBaseUrl: process.env.SERVER_BASE_URL,
 };
 
 // database connectivity
@@ -24,7 +25,7 @@ const pageInformation = {
   resultPerPage: process.env.RESULT_PER_PAGE,
 };
 
-export const { serverMode, serverPort } = server;
+export const { serverMode, serverPort,serverBaseUrl } = server;
 export const { dbUri, dbName } = database;
 export const { jwtSecret, jwtExpire, cookieExpire } = jwtInformation;
 export const { resultPerPage } = pageInformation;

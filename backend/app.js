@@ -6,13 +6,17 @@ import connectMongoDB from "./connect-DB/db.js";
 import user from "./routes/user.route.js";
 import admin from "./routes/admin.route.js";
 import { customErrorMiddleware } from "./middlewares/error.js";
+import {serverBaseUrl} from "./config/env.config.js";
 
 // MONGO DATABASE
 connectMongoDB();
 const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: serverBaseUrl,
+    credentials: true,
+  }));
 
 // routes
 app.use("/user", user);
