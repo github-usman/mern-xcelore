@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import connectMongoDB from "./connect-DB/db.js";
 import user from "./routes/user.route.js";
 import admin from "./routes/admin.route.js";
@@ -11,6 +12,7 @@ connectMongoDB();
 const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
 // routes
 app.use("/user", user);

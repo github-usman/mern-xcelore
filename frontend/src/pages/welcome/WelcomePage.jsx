@@ -14,7 +14,7 @@ const WelcomePage = () => {
           <ReactTyped
             strings={[
               "You will Directly Connect to Admin Login",
-              "One Login",
+              "Once Login",
             ]}
             typeSpeed={40}
             backSpeed={50}
