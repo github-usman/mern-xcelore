@@ -17,7 +17,7 @@ const AllUserProfile = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    dispatch(fetchAllUserProfile(searchTerm, currentPage));
+    dispatch(fetchAllUserProfile(searchTerm, 1));
   };
 
   const handleClickNext = () => {
@@ -39,11 +39,13 @@ const AllUserProfile = () => {
 
   return (
     <div className="justify-content-center align-items-center mb-5">
-      <div className="card-header d-flex justify-content-evenly  align-item-center bg-primary text-white" style={{position:'sticky',top:'0',zIndex:'100'}}>
+      <div className="card-header  bg-primary text-white" style={{position:'sticky',top:'0',zIndex:'100'}}>
+        <div className="container d-flex justify-content-between align-items-center">
           <h5 className="text-center d-flex align-items-center">
             <FaUser /> All Users Profiles
           </h5>
       <Link to={"/admin/profile"} className="btn btn-dark text-center d-flex  " ><h6>My Profile</h6></Link>
+      </div>
     </div>
         <form className="d-flex align-item-center justify-content-center m-auto w-100 my-1" onSubmit={handleSearch}>
           <input 
@@ -65,7 +67,7 @@ const AllUserProfile = () => {
         <div className="card-body">
           {users.length > 0 ? (
             users.map((user) => (
-              <UsersProfile user={user}/>
+              <UsersProfile user={user} key={user.id}/>
             ))
           ) : (
             <div>No users found.</div>
