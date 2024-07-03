@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import toast from 'react-hot-toast';
 import { FaCalendarAlt, FaEdit, FaEnvelope, FaTrash, FaUser, FaUserTag } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import UpdateUserProfile from "./UpdateUserProfile";
 
 import { deleteUserById, fetchAllUserProfile } from "../../store/actions/authActions";
 
@@ -17,6 +18,17 @@ const UsersProfile = ({user}) => {
     } catch (error) {
       console.error('Error deleting user:', error.message);
     }
+  };
+
+  // Modal
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -70,8 +82,10 @@ const UsersProfile = ({user}) => {
         </div>
         <hr />
         <div className="d-flex gap-5 justify-content-center">
-        <button className="btn btn-danger d-flex align-items-center gap-3" onClick={handleDelete}><FaTrash /> Delete User</button>
-        <button className="btn btn-warning d-flex align-items-center gap-3"><FaEdit /> Update User</button>
+        {!isOpen && <button className="btn btn-danger d-flex align-items-center gap-3" onClick={handleDelete} disabled={user.email ==='admin@gmail.com'}><FaTrash /> Delete User</button>}
+       {!isOpen && <button className="btn btn-warning d-flex align-items-center gap-3" onClick={openPopup}><FaEdit /> Update User</button>}
+        {isOpen && <UpdateUserProfile propUser={user} closePopup={closePopup} />}
+
         </div>
       </div>
     </>

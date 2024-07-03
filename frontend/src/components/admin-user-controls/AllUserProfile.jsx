@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { FaSearch, FaUser } from "react-icons/fa";
+import { FaPlusCircle, FaSearch, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchAllUserProfile } from "../../store/actions/authActions";
 import UsersProfile from "./UsersProfile";
+import UserRegister from "./UserRegister";
 
 const AllUserProfile = () => {
+  // Modal
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
+  };
+
+
   const dispatch = useDispatch();
   const { users,userCount, loading } = useSelector((state) => state.auth);
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,6 +26,7 @@ const AllUserProfile = () => {
 
   useEffect(() => {
     dispatch(fetchAllUserProfile(searchTerm, currentPage));
+    // eslint-disable-next-line
   }, [dispatch, currentPage]);
 
   const handleSearch = (e) => {
@@ -41,26 +55,33 @@ const AllUserProfile = () => {
     <div className="justify-content-center align-items-center mb-5">
       <div className="card-header  bg-primary text-white" style={{position:'sticky',top:'0',zIndex:'100'}}>
         <div className="container d-flex justify-content-between align-items-center">
-          <h5 className="text-center d-flex align-items-center">
+          <h5 className="text-center d-flex align-items-center gap-2">
             <FaUser /> All Users Profiles
           </h5>
       <Link to={"/admin/profile"} className="btn btn-dark text-center d-flex  " ><h6>My Profile</h6></Link>
       </div>
     </div>
-        <form className="d-flex align-item-center justify-content-center m-auto w-100 my-1" onSubmit={handleSearch}>
+      <div className="d-flex justify-content-center my-1 gap-5">
+        <form className="d-flex align-item-center justify-content-center" onSubmit={handleSearch}>
           <input 
             type="text" 
             className="form-control " 
             placeholder="Search..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            style={{ maxWidth: '500px' }}
           />
-          <button className="btn btn-success px-5" type="submit">
+          <button className="btn btn-success " type="submit">
             <FaSearch size={20} />
           </button>
 
         </form>
+        <button className="btn btn-success d-flex align-items-center justify-content-between" onClick={openPopup}>
+          <p className="mb-0 me-2 flex-grow-1 text-start">Add New User</p>
+          <FaPlusCircle size={20} />
+        </button>
+        </div>
+
+        {isOpen && <UserRegister closePopup={closePopup} />}
       <div className="container card">
     
         

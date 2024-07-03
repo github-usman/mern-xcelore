@@ -28,7 +28,7 @@ const AdminLoginPage = () => {
   useEffect(() => {
     // console.log(auth.user.role, 'user role')
     if (isAuthenticated === true && auth.user.role === 'admin') {
-      navigate('/admin/profile');
+      navigate('/admin/all-user');
     }
     else if(isAuthenticated === true && auth.user.role !== 'admin'){
       deleteCookie('token');

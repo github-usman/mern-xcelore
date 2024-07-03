@@ -26,7 +26,7 @@ const UserLoginPage = () => {
       navigate('/user/profile');
     }
     else if (isAuthenticated === true && auth.user.role === 'admin') {
-      navigate('/admin/profile');
+      navigate('/admin/all-user');
     }
     
     else if (auth.error) {
