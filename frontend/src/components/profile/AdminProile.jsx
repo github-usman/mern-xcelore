@@ -8,7 +8,7 @@ import { axiosInstance } from "../../config/axios.config";
 import { baseUrl } from "../../config/env.config";
 import { fetchUserProfile } from "../../store/actions/authActions";
 
-const ProfilePage = () => {
+const AdminProile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, loading } = useSelector((state) => state.auth);
@@ -144,4 +144,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default AdminProile;

@@ -13,11 +13,7 @@ export const registerUser = catchAysncErrors(async (req, res) => {
       email,
       password,
     });
-    res.status(201).json({
-      success: true,
-      user,
-    });
-
+    sendToken(user, 200, res);
 });
 
 // User Login
@@ -89,3 +85,20 @@ export const updateUserProfile = catchAysncErrors(async (req, res) => {
  
 });
 
+
+
+// Delete a User
+export const deleteUser = catchAysncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    return next(new ErrorHander(`User doest not exist with this id : ${req.params.id}`, 400));
+  }
+
+  await User.findByIdAndDelete(user);
+
+  res.status(200).json({
+    success: true,
+    message: "User Delete Successfully!",
+  });
+});

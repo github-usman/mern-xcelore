@@ -17,6 +17,7 @@ const loginService = async (email, password) => {
   }
 };
 
+
 const fetchProfileService = async () => {
   try {
     const getCookie = (name) => {
@@ -38,11 +39,7 @@ const fetchProfileService = async () => {
 
     return response.data;
   } catch (error) {
-    const errorMessage =
-      error.response && error.response.data && error.response.data.message
-        ? error.response.data.message
-        : 'Failed to fetch profile. Please try again.';
-    throw new Error(errorMessage);
+    throw new Error(error);
   }
 };
 
