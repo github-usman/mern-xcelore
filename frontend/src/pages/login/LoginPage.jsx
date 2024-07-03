@@ -1,26 +1,33 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../services/authService';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../store/actions/authActions';
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [backendError, setBackendError] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+  const backendError = auth.error;
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      const data = await login(email, password);
-      navigate('/me');
-      console.log(data);
-      toast.success('Logged in Successfully');
-    } catch (err) {
-      setBackendError(err.message);
-      toast.error(err.message);
-    }
+    dispatch(login(email, password));
   };
+
+
+  React.useEffect(() => {
+    if (auth.user) {
+      navigate('/user-profile');
+      toast.success('Logged in Successfully');
+    }
+    if (auth.error) {
+      toast.error(auth.error);
+    }
+  }, [auth.user, auth.error, navigate]);
 
   return (
     <div className="container">
