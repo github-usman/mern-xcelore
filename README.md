@@ -1,3 +1,28 @@
+## Application SetUp
+
+- Environment Vairable set start your MongoDB server
+
+```
+RENAME example.env to .env 
+cd frontend
+again 
+RENAME example.env to .env 
+```
+
+- Install node packages
+```
+npm install
+and cd frontend and again
+npm install
+```
+
+- now start Server and Client
+```
+npm run dev
+and cd frontend
+npm start
+```
+
 # Frontend :
 ## Getting Started with Create React App
 
@@ -43,7 +68,29 @@ and login forms.
 the admin panel.
 
 # BACKEND POSTMAN API:
-## ADMIN START
+
+
+
+## End-point: First the time Admin Registration -- NO AUTH
+### Method: POST
+>```
+>http://localhost:5000/api/v1/admin/first-time-admin-hidden/register
+>```
+### Body (**raw**)
+
+```json
+{
+"first_name":"usman",
+"last_name":"ansari",
+"email":"admin@gmail.com",
+"password":"admin!@#123",
+"role":"admin"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
 
 # Project: Admin
 
@@ -67,25 +114,6 @@ the admin panel.
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: First the time Admin Registration
-### Method: POST
->```
->http://localhost:5000/api/v1/admin/first-time-admin-hidden/register
->```
-### Body (**raw**)
-
-```json
-{
-"first_name":"usman",
-"last_name":"ansari",
-"email":"admin@gmail.com",
-"password":"admin!@#123",
-"role":"admin"
-}
-```
-
-
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ## End-point: All users --Auth
 ### Method: GET
@@ -146,14 +174,9 @@ the admin panel.
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-_________________________________________________
-Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)
-
-## ADMIN END
 
 ------------------------------------------------------------------------
 
-## USER START
 # Project: User
 
 ## End-point: Register User
@@ -255,5 +278,3 @@ Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdo
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 _________________________________________________
-Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)
-
