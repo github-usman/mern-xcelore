@@ -1,5 +1,8 @@
-import { fetchProfileService, loginService } from "../../services/authService";
+import { fetchAllProfileService, fetchProfileService, loginService } from "../../services/authService";
 import {
+  FETCH_ALL_PROFILE_FAILURE,
+  FETCH_ALL_PROFILE_SUCCESS,
+  FETCH_ALL_PROFILE_SUCCESS_COUNT,
   FETCH_PROFILE_FAILURE,
   FETCH_PROFILE_SUCCESS,
   LOGIN_FAILURE,
@@ -31,3 +34,17 @@ export const fetchUserProfile = () => async (dispatch) => {
     dispatch({ type: SET_LOADING, payload: false });
   }
 };
+
+export const fetchAllUserProfile = () => async (dispatch) => {
+  dispatch({ type: SET_LOADING, payload: true });
+  try {
+    const data = await fetchAllProfileService();
+    dispatch({ type: FETCH_ALL_PROFILE_SUCCESS, payload: data.allUsers }); // Use data.allUsers
+    dispatch({ type: FETCH_ALL_PROFILE_SUCCESS_COUNT, payload: data.userCount }); 
+  } catch (error) {
+    dispatch({ type: FETCH_ALL_PROFILE_FAILURE, payload: error.message });
+  } finally {
+    dispatch({ type: SET_LOADING, payload: false });
+  }
+};
+

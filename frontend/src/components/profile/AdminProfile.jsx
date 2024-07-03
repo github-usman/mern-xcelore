@@ -8,7 +8,7 @@ import { axiosInstance } from "../../config/axios.config";
 import { baseUrl } from "../../config/env.config";
 import { fetchUserProfile } from "../../store/actions/authActions";
 
-const AdminProile = () => {
+const AdminProfile   = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, loading } = useSelector((state) => state.auth);
@@ -19,6 +19,7 @@ const AdminProile = () => {
     dispatch(fetchUserProfile());
   }, [dispatch]);
 
+  // delete cookie function
   const deleteCookie = (name) => {
     return new Promise((resolve) => {
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
@@ -31,35 +32,6 @@ const AdminProile = () => {
       await axios.post(`${baseUrl}/user/logout`);
       await deleteCookie('token');
       toast.success('Logged Out Successfully!');
-      auth.user = null;
-      navigate('/user/login');
-    } catch (error) {
-      const errorMessage =
-        error.response && error.response.data && error.response.data.message
-          ? error.response.data.message
-          : 'Logout failed. Please try again.';
-            toast.error(errorMessage);
-    }
-  };
-  const deleteProfileHandle = async () => {
-    try {
-      const getCookie = (name) => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-      };
-  
-      const token = getCookie('token');
-      if (!token) {
-        throw new Error('No token found. Please log in.');
-      }
-  
-      await axiosInstance.delete('/user/me', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      toast.success('Profile deleted Successfully!');
       auth.user = null;
       navigate('/user/login');
     } catch (error) {
@@ -135,13 +107,15 @@ const AdminProile = () => {
             <Link to="/user/update">
               <button className="btn btn-primary mt-3">Update Your Profile</button>
             </Link>
-            <button className="btn btn-danger ms-3 mt-3" onClick={logOutButton}>Log Out</button>
-            <button className="btn btn-danger ms-3 mt-3" onClick={deleteProfileHandle}>Delete Your Profile</button>
+            <button className="btn btn-danger ms-3 px-5 mt-3" onClick={logOutButton}>Log Out</button>
           </div>
+          <Link to="/admin/all-user">
+              <button className="btn btn-dark w-100 mt-5">Check List Of Users</button>
+            </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default AdminProile;
+export default AdminProfile;

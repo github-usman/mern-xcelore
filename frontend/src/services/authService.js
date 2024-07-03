@@ -43,4 +43,29 @@ const fetchProfileService = async () => {
   }
 };
 
-export { loginService, fetchProfileService };
+const fetchAllProfileService = async () => {
+  try {
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+
+    const token = getCookie('token');
+    if (!token) {
+      throw new Error('No token found. Please log in.');
+    }
+
+    const response = await axiosInstance.get('/admin/users', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export { loginService, fetchProfileService,fetchAllProfileService };
