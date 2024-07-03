@@ -27,6 +27,7 @@ npm start
 ## Getting Started with Create React App
 - SEARCH, DELETE, UPDATE
 ![home](./frontend/assets/admin-crud.png)
+![home](./frontend/assets/admin-user-update.png)
 # Backend:
 ### User Authentication:
 - Register: A new user should be able to register with a first name, last name,
