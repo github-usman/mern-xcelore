@@ -41,3 +41,219 @@ and login forms.
 - Error Handling: Implemented proper error handling ```[backend]```
 - Pagination and Search: Added pagination from ```[.ENV]``` and search from ```[query params]``` functionality to the user list in
 the admin panel.
+
+# BACKEND POSTMAN API:
+## ADMIN START
+
+# Project: Admin
+
+## End-point: Role base Register --Auth
+### Method: POST
+>```
+>http://localhost:5000/api/v1/admin/register
+>```
+### Body (**raw**)
+
+```json
+{
+"first_name":"usman",
+"last_name":"ansari",
+"email":"admin@gmail.com",
+"password":"admin!@#123",
+"role":"admin"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: First the time Admin Registration
+### Method: POST
+>```
+>http://localhost:5000/api/v1/admin/first-time-admin-hidden/register
+>```
+### Body (**raw**)
+
+```json
+{
+"first_name":"usman",
+"last_name":"ansari",
+"email":"admin@gmail.com",
+"password":"admin!@#123",
+"role":"admin"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: All users --Auth
+### Method: GET
+>```
+>http://localhost:5000/api/v1/admin/users
+>```
+### Body (**raw**)
+
+```json
+
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: Single user --Auth
+### Method: GET
+>```
+>http://localhost:5000/api/v1/admin/user/66845859f139f221701037ab
+>```
+### Body (**raw**)
+
+```json
+
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: Update User --Auth
+### Method: PUT
+>```
+>http://localhost:5000/api/v1/admin/user/66845859f139f221701037ab
+>```
+### Body (**raw**)
+
+```json
+{
+    "first_name": "name updated by admin"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: Delete User --Auth
+### Method: DELETE
+>```
+>http://localhost:5000/api/v1/admin/user/66845859f139f221701037ab
+>```
+### Body (**raw**)
+
+```json
+{
+    "first_name": "name update by admin"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+_________________________________________________
+Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)
+
+## ADMIN END
+
+------------------------------------------------------------------------
+
+## USER START
+# Project: User
+
+## End-point: Register User
+### Method: POST
+>```
+>http://localhost:5000/api/v1/user/register
+>```
+### Body (**raw**)
+
+```json
+{
+"first_name":"usman",
+"last_name":"ansari",
+"email":"usmantoyou@gmail.com",
+"password":"password"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: Login
+### Method: POST
+>```
+>http://localhost:5000/api/v1/user/login
+>```
+### Body (**raw**)
+
+```json
+{
+    "email":"usmantoyou@gmail.com",
+    "password":"password"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: Logout --Auth
+### Method: POST
+>```
+>http://localhost:5000/api/v1/user/logout
+>```
+### Body (**raw**)
+
+```json
+{
+    "email":"usmantoyou@gmail.com",
+    "password":"password"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: User Profile --Auth
+### Method: GET
+>```
+>http://localhost:5000/api/v1/user/me
+>```
+### Body (**raw**)
+
+```json
+
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: Update --Auth
+### Method: PUT
+>```
+>http://localhost:5000/api/v1/user/me
+>```
+### Body (**raw**)
+
+```json
+{
+    "first_name":"update name"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## End-point: Delete--Auth
+### Method: DELETE
+>```
+>http://localhost:5000/api/v1/user/me
+>```
+### Body (**raw**)
+
+```json
+{
+    "first_name":"update name"
+}
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+_________________________________________________
+Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)
+
