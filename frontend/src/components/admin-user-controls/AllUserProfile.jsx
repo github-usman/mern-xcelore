@@ -7,12 +7,18 @@ import UsersProfile from "./UsersProfile";
 
 const AllUserProfile = () => {
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState("");
   const { users,userCount, loading } = useSelector((state) => state.auth);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchAllUserProfile());
-  }, [dispatch]);
+    dispatch(fetchAllUserProfile(searchTerm, currentPage));
+  }, [dispatch, currentPage]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(fetchAllUserProfile(searchTerm, currentPage));
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -25,8 +31,8 @@ const AllUserProfile = () => {
             <FaUser /> All Users Profiles
           </h5>
       <Link to={"/admin/profile"} className="btn btn-dark text-center d-flex  " ><h6>My Profile</h6></Link>
-        </div>
-        <div className="d-flex align-item-center justify-content-center m-auto w-100 my-1">
+    </div>
+        <form className="d-flex align-item-center justify-content-center m-auto w-100 my-1" onSubmit={handleSearch}>
           <input 
             type="text" 
             className="form-control " 
@@ -35,11 +41,11 @@ const AllUserProfile = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{ maxWidth: '500px' }}
           />
-          <button className="btn btn-success px-5">
+          <button className="btn btn-success px-5" type="submit">
             <FaSearch size={20} />
           </button>
 
-        </div>
+        </form>
       <div className="container card">
     
         

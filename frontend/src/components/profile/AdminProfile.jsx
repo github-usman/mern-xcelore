@@ -52,10 +52,13 @@ const AdminProfile   = () => {
   return (
     <div className="vh-100 w-100 d-flex justify-content-center align-items-center">
       <div className="container card">
-        <div className="card-header bg-primary text-white">
+        <div className="card-header d-flex justify-content-between align-items-center bg-primary text-white">
           <h1 className="mb-0">
             <FaUser /> Profile
           </h1>
+          <div className="text-center">
+            <button className="btn btn-danger ms-3 px-5 " onClick={logOutButton}>Log Out</button>
+          </div>
         </div>
         <div className="card-body">
           <div className="row mb-3">
@@ -102,15 +105,13 @@ const AdminProfile   = () => {
                 </span>
               </p>
             </div>
+            <div>
+      
+            </div>
           </div>
-          <div className="text-center">
-            <Link to="/user/update">
-              <button className="btn btn-primary mt-3">Update Your Profile</button>
-            </Link>
-            <button className="btn btn-danger ms-3 px-5 mt-3" onClick={logOutButton}>Log Out</button>
-          </div>
+        
           <Link to="/admin/all-user">
-              <button className="btn btn-dark w-100 mt-5">Check List Of Users</button>
+              <button className="border border-2 border-success btn btn-outline-success w-100 mt-5" style={{fontWeight:'900',fontSize:"22px"}}>Check List Of Users</button>
             </Link>
         </div>
       </div>

@@ -132,7 +132,7 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="text-center">
-            <Link to="/user/update">
+            <Link to="/update">
               <button className="btn btn-primary mt-3">Update Your Profile</button>
             </Link>
             <button className="btn btn-danger ms-3 mt-3" onClick={logOutButton}>Log Out</button>

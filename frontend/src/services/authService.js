@@ -43,7 +43,7 @@ const fetchProfileService = async () => {
   }
 };
 
-const fetchAllProfileService = async () => {
+const fetchAllProfileService = async (keyword = '', page = 1) => {
   try {
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
@@ -60,12 +60,17 @@ const fetchAllProfileService = async () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      params: {
+        keyword,
+        page,
+      },
     });
     console.log(response.data);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 };
+
 
 export { loginService, fetchProfileService,fetchAllProfileService };
