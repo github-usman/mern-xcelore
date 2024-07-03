@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  deleteUser,
   loginUser,
   logoutUser,
   profileUser,
@@ -12,10 +13,11 @@ const router = express();
 // profile
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.post("/logout",isAuthenticatedUser, logoutUser);
+router.post("/logout", logoutUser);
 router
   .route("/me")
   .get(isAuthenticatedUser,profileUser)
   .put(isAuthenticatedUser,updateUserProfile)
+  .delete(isAuthenticatedUser,deleteUser);
 
 export default router;

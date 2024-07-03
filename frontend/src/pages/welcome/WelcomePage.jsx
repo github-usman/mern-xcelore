@@ -6,7 +6,7 @@ import styles from "./welcomePage.module.css";
 
 const WelcomePage = () => {
   return (
-    <div className='bg-primary vh-100 w-100 border border-black d-flex justify-content-center align-items-center'>
+    <div className='bg-primary vh-100 w-100 d-flex justify-content-center align-items-center'>
        <div className="container text-center">
         <p className="fs-2">Hi there!</p>
         <h2 className={styles.welcome}>Welcome! to xcelore portal</h2>
@@ -14,7 +14,7 @@ const WelcomePage = () => {
           <ReactTyped
             strings={[
               "You will Directly Connect to Admin Login",
-              "One Login",
+              "Once Login",
             ]}
             typeSpeed={40}
             backSpeed={50}
@@ -25,7 +25,7 @@ const WelcomePage = () => {
           </ReactTyped>
         </h3>
         <div>
-          <Link to="/login" className={styles.btnGetStarted}>
+          <Link to="user/login" className={styles.btnGetStarted}>
             Get started
           </Link>
         </div>
