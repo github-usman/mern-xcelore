@@ -13,18 +13,10 @@ connectMongoDB();
 const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
-
-// Define CORS options to allow any origin and credentials
-const corsOptions = {
-  origin: (origin, callback) => {
-    callback(null, true);
-  },
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
-
+app.use(cors({
+    origin: true,
+    credentials: true,
+  }));
 
 // routes
 app.use("/user", user);
