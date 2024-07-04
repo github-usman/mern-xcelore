@@ -25,9 +25,6 @@ npm start
 ```
 
 
-# Deployed Link
-- ```Frontend``` : https://mern-xcelore.netlify.app
-- ```Backend``` :  https://backend-mern-xcelore.vercel.app
 # Frontend :
 ## Getting Started with Create React App
 - SEARCH, DELETE, UPDATE
