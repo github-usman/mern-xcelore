@@ -8,20 +8,6 @@
   min-height: 100px;
 }
 
-.btnGetStarted {
-  background-color: black;
-  padding: 0.8rem 3rem;
-  color: #fff;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 1px 1px 10px 1px #9ebefa;
-  cursor: pointer;
-  text-decoration: none;
-}
-.btnGetStarted:hover {
-  color: #000;
-  background-color: #fff;
-}
 .reactTypedInner {
   width: 100%;
   margin: 1rem 0;

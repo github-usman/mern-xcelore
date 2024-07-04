@@ -2,27 +2,53 @@
 ## Application SetUp
 
 - Environment Vairable set start your MongoDB server
+### DEVELOPMENT MODE
+
+- rename file example.development.env to .env or use following command
+- install node package
+- start server in development mode
 
 ```
-RENAME example.env to .env 
-cd frontend
-again 
-RENAME example.env to .env 
-```
-
-- Install node packages
-```
+cp example.development.env .env
 npm install
-and cd frontend and again
-npm install
-```
-
-- now start Server and Client
-```
 npm run dev
-and cd frontend
+
+```
+
+- open new terminal follow these command respectively
+
+```
+cd frontend
+cp example.development.env .env
+npm install
 npm start
 ```
+
+
+### PRODUCTION MODE
+### Update your .env file Credentials
+
+- rename file example.production.env to .env or use following command
+- install node package
+- start server in development mode
+
+```
+cp example.production.env .env
+npm install
+npm run start
+
+```
+
+- open new terminal follow these command respectively
+
+```
+cd frontend
+cp example.production.env .env
+npm install
+npm run build
+npm start
+```
+
 
 
 # Deployed Link
@@ -31,9 +57,17 @@ npm start
 
 # Frontend :
 ## Getting Started with Create React App
-- SEARCH, DELETE, UPDATE
-![home](./frontend/assets/admin-crud.png)
-![home](./frontend/assets/admin-user-update.png)
+- CREATE, SEARCH, DELETE, UPDATE --ADMIN/USER
+![home](./frontend/assets/one.png)
+![home](./frontend/assets/two.png)
+![home](./frontend/assets/three.png)
+![home](./frontend/assets/four.png)
+![home](./frontend/assets/five.png)
+![home](./frontend/assets/six.png)
+![home](./frontend/assets/seven.png)
+![home](./frontend/assets/eight.png)
+![home](./frontend/assets/nine.png)
+
 # Backend:
 ### User Authentication:
 - Register: A new user should be able to register with a first name, last name,
@@ -58,11 +92,15 @@ and login forms.
 - Pagination and Search: Added pagination from ```[.ENV]``` and search from ```[query params]``` functionality to the user list in
 the admin panel.
 
-# BACKEND POSTMAN API:
+# BACKEND POSTMAN collection API:
+
+
+# Project: Admin
 
 
 
-## End-point: Admin Registration -- Without any AUTH
+
+## End-point: for the first time Admin Registration
 ### Method: POST
 >```
 >http://localhost:5000/api/v1/admin/first-time-admin-hidden/register
@@ -82,10 +120,7 @@ the admin panel.
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-
-# Project: Admin
-
-## End-point: Role base Register --Auth
+## End-point: Add a User -> ADMIN Auth
 ### Method: POST
 >```
 >http://localhost:5000/api/v1/admin/register
@@ -102,11 +137,9 @@ the admin panel.
 }
 ```
 
-
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-
-## End-point: All users --Auth
+## End-point: All users -> ADMIN Auth
 ### Method: GET
 >```
 >http://localhost:5000/api/v1/admin/users
@@ -120,7 +153,7 @@ the admin panel.
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: Single user --Auth
+## End-point: Single-> Admin Auth
 ### Method: GET
 >```
 >http://localhost:5000/api/v1/admin/user/66845859f139f221701037ab
@@ -134,7 +167,7 @@ the admin panel.
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: Update User --Auth
+## End-point: Update ->ADMIN Auth
 ### Method: PUT
 >```
 >http://localhost:5000/api/v1/admin/user/66845859f139f221701037ab
@@ -150,7 +183,7 @@ the admin panel.
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: Delete User --Auth
+## End-point: Delete -> ADMIN Auth
 ### Method: DELETE
 >```
 >http://localhost:5000/api/v1/admin/user/66845859f139f221701037ab
@@ -166,11 +199,9 @@ the admin panel.
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-------------------------------------------------------------------------
-
 # Project: User
 
-## End-point: Register User
+## End-point: Register -> USER
 ### Method: POST
 >```
 >http://localhost:5000/api/v1/user/register
@@ -179,17 +210,17 @@ the admin panel.
 
 ```json
 {
-"first_name":"usman",
-"last_name":"ansari",
-"email":"usmantoyou@gmail.com",
-"password":"password"
+"first_name":"demo",
+"last_name":"user",
+"email":"demouser@gmail.com",
+"password":"demouser"
 }
 ```
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: Login
+## End-point: Login -> USER/ADMIN
 ### Method: POST
 >```
 >http://localhost:5000/api/v1/user/login
@@ -198,15 +229,15 @@ the admin panel.
 
 ```json
 {
-    "email":"usmantoyou@gmail.com",
-    "password":"password"
+    "email":"demouser@gmail.com",
+    "password":"demouser"
 }
 ```
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: Logout --Auth
+## End-point: Logout -> USER auth required
 ### Method: POST
 >```
 >http://localhost:5000/api/v1/user/logout
@@ -214,16 +245,13 @@ the admin panel.
 ### Body (**raw**)
 
 ```json
-{
-    "email":"usmantoyou@gmail.com",
-    "password":"password"
-}
+
 ```
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: User Profile --Auth
+## End-point: Profile -> USER auth required
 ### Method: GET
 >```
 >http://localhost:5000/api/v1/user/me
@@ -237,7 +265,7 @@ the admin panel.
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: Update --Auth
+## End-point: Update -> USER auth required
 ### Method: PUT
 >```
 >http://localhost:5000/api/v1/user/me
@@ -253,7 +281,7 @@ the admin panel.
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: Delete--Auth
+## End-point: Delete -> USER auth required
 ### Method: DELETE
 >```
 >http://localhost:5000/api/v1/user/me

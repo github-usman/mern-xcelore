@@ -1,4 +1,4 @@
-import { cookieExpire } from "../config/env.config.js";
+import { cookieExpire, serverMode } from "../config/env.config.js";
 const sendToken = (user, statusCode, res) => {
   const token = user.getJWTToken();
   const maxAge = cookieExpire * 24 * 60 * 60 * 1000;
@@ -6,10 +6,10 @@ const sendToken = (user, statusCode, res) => {
   const options = {
     maxAge: maxAge,
     httpOnly: true,
-    secure: true,
+    secure: serverMode === 'production', 
     sameSite: 'None', 
-
   };
+  
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
     user,

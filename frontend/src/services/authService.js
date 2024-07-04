@@ -1,130 +1,66 @@
-import { axiosInstance } from '../config/axios.config';
-import Cookies from "js-cookie";
-const loginService = async (email, password) => {
+import axiosInstance from "./axios.config";
+
+export const loginService = async ({ email, password }) => {
   try {
-    const response = await axiosInstance.post('/user/login', { email, password });
-    const { token } = response.data;
-    if (token) {
-      Cookies.set('token', token, { expires: 5 }); 
-    }
+    const response = await axiosInstance.post("/user/login", { email, password });
+    const { token, user } = response.data;
+    localStorage.setItem("authToken", token);
+    localStorage.setItem("userRole", user.role);
     return response.data;
   } catch (error) {
-    const errorMessage =
-      error.response && error.response.data && error.response.data.message
-        ? error.response.data.message
-        : 'Login failed. Please try again.';
-    throw new Error(errorMessage);
+    throw new Error(error.response?.data.message || "An error occurred");
   }
 };
 
-
-const fetchProfileService = async () => {
+export const fetchProfileService = async () => {
   try {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    };
-
-    const token = getCookie('token');
-    if (!token) {
-      throw new Error('No token found. Please log in.');
-    }
-
-    const response = await axiosInstance.get('/user/me', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const token = localStorage.getItem("authToken");
+    if (!token) throw new Error("Please log in again.");
+    const response = await axiosInstance.get("/user/me", {
+      headers: { Authorization: `Bearer ${token}` },
     });
-
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.response?.data.message || "An error occurred");
   }
 };
 
-const fetchAllProfileService = async (keyword = '', page = 1) => {
+export const userRegisterService = async ({ first_name, last_name, email, password }) => {
   try {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    };
-
-    const token = getCookie('token');
-    if (!token) {
-      throw new Error('No token found. Please log in.');
-    }
-
-    const response = await axiosInstance.get('/admin/users', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: {
-        keyword,
-        page,
-      },
-    });
-    console.log(response.data);
-    return response.data;
+    const response = await axiosInstance.post("/user/register", { first_name, last_name, email, password });
+    const { token, user } = response.data;
+    localStorage.setItem("authToken", token);
+    localStorage.setItem("userRole", user.role);
+    return { user };
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(error.response?.data.message || "An error occurred");
   }
 };
 
-const deleteUserParamIdService = async (id) => {
+export const deleteProfileService = async () => {
   try {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    };
-
-    const token = getCookie('token');
-    if (!token) {
-      throw new Error('No token found. Please log in.');
-    }
-
-    const response = await axiosInstance.delete(`/admin/user/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const token = localStorage.getItem("authToken");
+    if (!token) throw new Error("Please log in again.");
+    await axiosInstance.delete("/user/me", {
+      headers: { Authorization: `Bearer ${token}` },
     });
-
-    console.log(response.data , 'delete');
-    return response.data;
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userRole");
+    return null;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(error.response?.data.message || "An error occurred");
   }
 };
 
-
-
-const updateUserParamIdService = async (id) => {
+export const userUpdateProfileService = async ({ first_name, last_name, email }) => {
   try {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    };
-
-    const token = getCookie('token');
-    if (!token) {
-      throw new Error('No token found. Please log in.');
-    }
-
-    const response = await axiosInstance.put(`/admin/user/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const token = localStorage.getItem("authToken");
+    if (!token) throw new Error("Please log in again.");
+    const response = await axiosInstance.put("/user/me", { first_name, last_name, email }, {
+      headers: { Authorization: `Bearer ${token}` },
     });
-
-    console.log(response.data , 'delete');
-    return response.data;
+    return response.data.user;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(error.response?.data.message || "An error occurred");
   }
 };
-
-
-export { loginService, deleteUserParamIdService,fetchProfileService,fetchAllProfileService,updateUserParamIdService };

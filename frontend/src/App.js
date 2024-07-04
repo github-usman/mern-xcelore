@@ -1,32 +1,33 @@
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import UserProfile from "./components/profile/UserProfile";
-import ProtectedRoute from "./custom-hooks/protectedRoute";
-import UserLoginPage from "./pages/login/UserLoginPage";
-import AdminLoginPage from "./pages/login/AdminLoginPage";
-import UserRegister from "./pages/register/UserRegister";
+import AllUserProfile from "./pages/admin/AllUserProfile";
+import AdminProfile from "./pages/admin/AdminProfile";
+import UserProfile from "./pages/user/UserProfile";
+import UserProfileUpdate from "./pages/user/UserProfileUpdate";
+import ProtectedRoute from "./custom-hooks/ProtectedRoute";
+import UserLoginPage from "./pages/LoginPage";
+import UserRegister from "./pages/user/UserRegister";
 import WelcomePage from "./pages/welcome/WelcomePage";
-import UserProfileUpdate from "./components/update/UserProfileUpdate"
-import AdminProfile from "./components/profile/AdminProfile";
-import AllUserProfile from "./components/admin-user-controls/AllUserProfile";
+import AuthAdmin from "./custom-hooks/AuthAdmin";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
+        <Route path="/user/login" element={<UserLoginPage />} />
+
+        {/* protected routes */}
         <Route
-            path="/update"
-            element={
-              <ProtectedRoute>
-                <UserProfileUpdate />
-              </ProtectedRoute>
-            }
-          />
+          path="/update"
+          element={
+            <ProtectedRoute>
+              <UserProfileUpdate />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/user">
           <Route path="register" element={<UserRegister />} />
-          <Route path="login" element={<UserLoginPage />} />
-
           <Route
             path="profile"
             element={
@@ -35,25 +36,32 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
         </Route>
+
+        {/* admin routes */}
         <Route path="/admin">
-        <Route path="login" element={<AdminLoginPage />} />
-        <Route path="profile"
-         element={
-          <ProtectedRoute>
-             <AdminProfile />
-          </ProtectedRoute>
-          } /> 
-        <Route path="all-user"
-         element={
-          <ProtectedRoute>
-             <AllUserProfile />
-          </ProtectedRoute>
-          } />
-      </Route>
+          <Route
+            path="profile"
+            element={
+              <AuthAdmin>
+                <AdminProfile />
+              </AuthAdmin>
+            }
+          />
+          <Route
+            path="all-user"
+            element={
+              <AuthAdmin>
+                <AllUserProfile />
+              </AuthAdmin>
+            }
+          />
+        </Route>
+
+        {/* admin routes end */}
+        {/* Protected Route end */}
       </Routes>
-      
+
       <Toaster position="top-right" />
     </BrowserRouter>
   );

@@ -2,4 +2,37 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  
+}
+
+
+/* animation */
+.repel-animation{
+  animation: repel 1s ease-in-out 0s infinite;
+}
+@keyframes repel {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+  0% {
+    box-shadow: 0 0 1px 0.1px #198af3;
+  }
+  100% {
+    box-shadow: 0 0 1px 20px rgba(186, 241, 149, 0);
+  }
+}
+
+.loading__button{
+  cursor: none;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+}
+
+.text-brush-effect {
+  color: white;
+  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
