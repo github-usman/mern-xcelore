@@ -2,3 +2,4 @@ production.env
 development.env
 .env
 node_modules
+build

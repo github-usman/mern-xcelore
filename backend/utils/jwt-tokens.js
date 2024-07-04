@@ -6,7 +6,7 @@ const sendToken = (user, statusCode, res) => {
   const options = {
     maxAge: maxAge,
     httpOnly: true,
-    secure: serverMode === 'production', 
+    secure: true, 
     sameSite: 'None', 
   };
   
