@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,29 +6,36 @@ import { Link, useNavigate } from 'react-router-dom';
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ConfirmationModal from '../../components/ConformationModal';
 import { openModal } from '../../store/slices/modalSlices';
-import { updateUserProfile } from '../../store/thunks/authThunk';
-
+import { fetchProfile, updateUserProfile } from '../../store/thunks/authThunk';
 
 const UserProfileUpdate = () => {
-
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
     email: '',
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user,error,isLoading } = useSelector((state) => state.auth);
+  const { user, error, isLoading } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!user) {
+      dispatch(fetchProfile());
+    }
+  }, [dispatch, user]);
 
   const updateProfile = async () => {
     try {
-      dispatch(updateUserProfile({  first_name: formData.first_name || user.first_name , last_name: formData.last_name || user.last_name, email: formData.email || user.email }));
+      await dispatch(updateUserProfile({
+        first_name: formData.first_name || user.first_name,
+        last_name: formData.last_name || user.last_name,
+        email: formData.email || user.email,
+      }));
       toast.success('Profile Updated Successfully!');
       navigate('/user/profile');
-      
     } catch (error) {
-      const errorMessage = error || 'update profile failed. Please try again.';
+      const errorMessage = error.message || 'Update profile failed. Please try again.';
       toast.error(errorMessage);
     }
   };
@@ -37,12 +44,11 @@ const UserProfileUpdate = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
-  if (!user) {
+  if (!user && !isLoading) {
     return <div>No user data available.</div>;
   }
 
@@ -56,9 +62,9 @@ const UserProfileUpdate = () => {
   };
 
   return (
-    <div className="vh-100 w-100 d-flex justify-content-center align-items-center ">
+    <div className="vh-100 w-100 d-flex justify-content-center align-items-center">
       <div className='container'>
-        <div className="row justify-content-center ">
+        <div className="row justify-content-center">
           <div className="card-body shadow p-3 rounded">
             <h3 className="card-title text-center shadow rounded bg-warning py-1 mb-3 d-flex justify-content-between px-1">
               Update Profile <Link to={"/user/profile"} className='rounded bg-danger text-light px-1 shadow tada'><RxCross2 className=' mb-1 ' /></Link>
@@ -72,7 +78,7 @@ const UserProfileUpdate = () => {
                   className="form-control"
                   id="first_name"
                   name="first_name"
-                  value={formData.first_name || user.first_name}
+                  value={formData.first_name || (user && user.first_name) || ''}
                   onChange={onChange}
                   required
                 />
@@ -84,7 +90,7 @@ const UserProfileUpdate = () => {
                   className="form-control"
                   id="last_name"
                   name="last_name"
-                  value={formData.last_name || user.last_name}
+                  value={formData.last_name || (user && user.last_name) || ''}
                   onChange={onChange}
                   required
                 />
@@ -96,7 +102,7 @@ const UserProfileUpdate = () => {
                   className="form-control"
                   id="email"
                   name="email"
-                  value={formData.email || user.email}
+                  value={formData.email || (user && user.email) || ''}
                   onChange={onChange}
                   required
                 />
@@ -106,7 +112,7 @@ const UserProfileUpdate = () => {
           </div>
         </div>
       </div>
-      <ConfirmationModal/>
+      <ConfirmationModal />
     </div>
   );
 };
