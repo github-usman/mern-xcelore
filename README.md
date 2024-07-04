@@ -1,3 +1,4 @@
+
 ## Application SetUp
 
 - Environment Vairable set start your MongoDB server
@@ -23,6 +24,10 @@ and cd frontend
 npm start
 ```
 
+
+# Deployed Link
+- ```Frontend``` : https://mern-xcelore.netlify.app
+- ```Backend``` :  https://backend-mern-xcelore.vercel.app
 # Frontend :
 ## Getting Started with Create React App
 - SEARCH, DELETE, UPDATE
@@ -56,7 +61,7 @@ the admin panel.
 
 
 
-## End-point: First the time Admin Registration -- NO AUTH
+## End-point: Admin Registration -- Without any AUTH
 ### Method: POST
 >```
 >http://localhost:5000/api/v1/admin/first-time-admin-hidden/register
