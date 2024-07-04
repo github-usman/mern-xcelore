@@ -39,6 +39,7 @@ const AdminLoginPage = () => {
     else if (auth.error) {
       toast.error(auth.error);
     }
+    // eslint-disable-next-line
   }, [isAuthenticated,auth.error, navigate]);
 
   return (

@@ -4,7 +4,6 @@ import toast from 'react-hot-toast';
 import { FaCalendarAlt, FaEnvelope, FaUser, FaUserTag } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { axiosInstance } from "../../config/axios.config";
 import { baseUrl } from "../../config/env.config";
 import { fetchUserProfile } from "../../store/actions/authActions";
 

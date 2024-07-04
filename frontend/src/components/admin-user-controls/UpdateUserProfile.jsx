@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaEdit } from 'react-icons/fa';
 import { RxCross1 } from "react-icons/rx";
-import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../config/axios.config.js';
 
 const UpdateUserProfile = ({ propUser, closePopup }) => {
@@ -12,7 +11,6 @@ const UpdateUserProfile = ({ propUser, closePopup }) => {
     email: '',
   });
   const [backendError, setBackendError] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setFormData({
