@@ -32,6 +32,7 @@ const UserProfileUpdate = () => {
         last_name: formData.last_name || user.last_name,
         email: formData.email || user.email,
       }));
+      await dispatch(fetchProfile());
       toast.success('Profile Updated Successfully!');
       navigate('/user/profile');
     } catch (error) {
@@ -43,10 +44,6 @@ const UserProfileUpdate = () => {
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   if (!user && !isLoading) {
     return <div>No user data available.</div>;
@@ -112,6 +109,7 @@ const UserProfileUpdate = () => {
           </div>
         </div>
       </div>
+      <LoadingSpinner />;
       <ConfirmationModal />
     </div>
   );

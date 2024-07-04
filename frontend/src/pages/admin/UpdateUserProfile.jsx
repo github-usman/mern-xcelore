@@ -4,8 +4,8 @@ import { FaEdit } from 'react-icons/fa';
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from 'react-redux';
 import ConfirmationModal from '../../components/ConformationModal.jsx';
-import { updateProfileById } from '../../store/thunks/adminThunk.js';
 import { openModal } from '../../store/slices/modalSlices.js';
+import { updateProfileById } from '../../store/thunks/adminThunk.js';
 
 const UpdateUserProfile = ({ propUser, closePopup }) => {
   const [formData, setFormData] = useState({
@@ -27,6 +27,7 @@ const UpdateUserProfile = ({ propUser, closePopup }) => {
       })).unwrap();
 
       toast.success('Profile Updated Successfully!');
+      closePopup();
     } catch (error) {
       const errorMessage = error || 'Update profile failed. Please try again.';
       toast.error(errorMessage);

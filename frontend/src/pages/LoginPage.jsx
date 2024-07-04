@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error,isLoading } = useSelector((state) => state.auth);
+  const { error } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,9 +24,6 @@ const LoginPage = () => {
       .catch(() => { });
   };
   
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   return (
     <div className="vh-100 w-100 d-flex justify-content-center align-items-center ">
@@ -65,6 +62,7 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
+      <LoadingSpinner />;
     </div>
   );
 };

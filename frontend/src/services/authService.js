@@ -56,13 +56,10 @@ export const userUpdateProfileService = async ({ first_name, last_name, email })
   try {
     const token = localStorage.getItem("authToken");
     if (!token) throw new Error("Please log in again.");
-    await axiosInstance.put("/user/me", { first_name, last_name, email }, {
+    const response = await axiosInstance.put("/user/me", { first_name, last_name, email }, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    const response = await axiosInstance.get("/user/me", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
     return response.data.user;
   } catch (error) {
     throw new Error(error.response?.data.message || "An error occurred");

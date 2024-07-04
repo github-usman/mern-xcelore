@@ -25,7 +25,7 @@ const AllUserProfile = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { allUsers, userCount, isLoading, isAuthenticated } = useSelector(
+  const { allUsers, userCount, isAuthenticated } = useSelector(
     (state) => state.auth
   );
 
@@ -67,9 +67,6 @@ const AllUserProfile = () => {
     }
   };
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   if (!allUsers) {
     return <div>No user data available.</div>;
@@ -78,9 +75,10 @@ const AllUserProfile = () => {
   return (
     <div className="justify-content-center align-items-center mb-5">
       <div className="card-header  bg-warning text-white" style={{ position: "sticky", top: "0", zIndex: "100" }}>
+      <LoadingSpinner/>
         <div className="container d-flex justify-content-between align-items-center">
           <div className="text-center text-black d-flex gap-1"><FaUser className="pt-1" size={20} /> <h5>All Users Profiles</h5></div>
-          <Link to={"/admin/profile"} className="btn btn-dark text-center a">
+          <Link to={"/admin/profile"} className="btn btn-dark text-center ">
             <h6 className="px-4 py-0">My Profile</h6>
           </Link>
         </div>
@@ -119,6 +117,8 @@ const AllUserProfile = () => {
             <div>No users found.</div>
           )}
         </div>
+        
+          
         <div className="d-flex align-item-center mb-3 ms-3">
           <button
             className="btn btn-dark"
@@ -140,6 +140,7 @@ const AllUserProfile = () => {
           </button>
         </div>
       </div>
+      
     </div>
   );
 };

@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { FaCalendarAlt, FaEnvelope, FaUser, FaUserTag } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import LoadingSpinner from "../../components/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 import ConfirmationModal from "../../components/ConformationModal";
-import { fetchProfile } from "../../store/thunks/authThunk";
-import { openModal } from "../../store/slices/modalSlices";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { logout } from "../../store/slices/authSlice";
+import { openModal } from "../../store/slices/modalSlices";
+import { fetchAllProfiles } from "../../store/thunks/adminThunk";
+import { fetchProfile } from "../../store/thunks/authThunk";
 
 
 const AdminProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isLoading, isAuthenticated } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,10 +34,6 @@ const AdminProfile = () => {
   };
 
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   if (!user) {
     return <div>No user data available.</div>;
   }
@@ -49,6 +46,11 @@ const AdminProfile = () => {
       onConfirm: logOutButton,
     }));
   };
+  const handleAllUserProfile = () => {
+    dispatch(fetchAllProfiles('',0));
+    navigate('/admin/all-user')
+  };
+
 
 
   return (
@@ -113,14 +115,12 @@ const AdminProfile = () => {
 
                 </div>
               </div>
-
-              <Link to="/admin/all-user">
-                <button className="border border-2 border-primary text-light btn btn-primary mt-5 repel-animation" style={{ fontWeight: '500', fontSize: "20px" }}>Check List Of Users</button>
-              </Link>
+              <button className="border border-2 border-primary text-light btn btn-primary mt-5 repel-animation" style={{ fontWeight: '500', fontSize: "20px" }} onClick={handleAllUserProfile}>Check List Of Users</button>
             </div>
           </div>
         </div>
       </div>
+      <LoadingSpinner />;
       <ConfirmationModal />
     </div>
   );

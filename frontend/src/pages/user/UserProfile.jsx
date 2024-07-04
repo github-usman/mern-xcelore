@@ -3,16 +3,16 @@ import toast from 'react-hot-toast';
 import { FaCalendarAlt, FaEnvelope, FaUser, FaUserTag } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import LoadingSpinner from "../../components/LoadingSpinner"
 import ConfirmationModal from "../../components/ConformationModal";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import { logout } from "../../store/slices/authSlice";
 import { openModal } from "../../store/slices/modalSlices";
 import { deleteUserProfile, fetchProfile } from "../../store/thunks/authThunk";
-import { logout } from "../../store/slices/authSlice";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isLoading, isAuthenticated } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,9 +45,6 @@ const ProfilePage = () => {
     }
   };
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   if (!user) {
     return <div>No user data available.</div>;
@@ -136,6 +133,7 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
+      <LoadingSpinner />;
       <ConfirmationModal/>
     </div>
   );
