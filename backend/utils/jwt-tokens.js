@@ -6,10 +6,10 @@ const sendToken = (user, statusCode, res) => {
   const options = {
     maxAge: maxAge,
     httpOnly: true,
-    secure: true, 
-    sameSite: 'None', 
+    secure: true,
+    sameSite: 'None',
   };
-  
+
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
     user,
