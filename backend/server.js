@@ -15,6 +15,12 @@ process.on("uncaughtException", (err) => {
 
 server.use("/api/v1", app);
 
+server.get('/',(req,res)=>{
+  res.send(
+    "Hello World!"
+  )
+})
+
 server.listen(serverPort, () => {
   console.log(`server is running on port ${serverPort} in ${serverMode} mode`);
 });
