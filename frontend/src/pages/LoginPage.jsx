@@ -4,6 +4,7 @@ import { SiTicktick } from "react-icons/si";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../store/thunks/authThunk';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
