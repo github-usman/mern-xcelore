@@ -1,4 +1,3 @@
-// src/pages/RegisterPage.js
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaPlusCircle } from 'react-icons/fa';

@@ -1,4 +1,3 @@
-// src/config/axios.config.js
 import axios from 'axios';
 import { baseUrl } from './env.config';
 

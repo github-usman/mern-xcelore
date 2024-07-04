@@ -1,4 +1,4 @@
-// // src/store/reducers/cookiesReducer.js
+
 // import { SET_COOKIE, REMOVE_COOKIE } from '../actionTypes';
 
 // const initialState = {

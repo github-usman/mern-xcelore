@@ -1,4 +1,3 @@
-// src/pages/RegisterPage.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import {baseUrl} from '../../config/env.config.js';
