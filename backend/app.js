@@ -13,10 +13,11 @@ connectMongoDB();
 const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
+
 app.use(cors({
-    origin: true,
-    credentials: true,
-  }));
+  origin: "https://mern-xcelore.netlify.app",
+  credentials: true,
+}));
 
 // routes
 app.use("/user", user);
